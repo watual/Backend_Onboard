@@ -1,0 +1,16 @@
+### 테스트 데이터
+@id1 = testUser1
+@pw1 = password1
+@id2 = testUser2
+@pw2 = password2
+
+### 회원가입
+POST http://localhost:8080/users/signup
+Content-Type: application/json
+
+{
+  "username": "{{id1}}",
+  "password": "{{pw1}}"
+}
+
+###
