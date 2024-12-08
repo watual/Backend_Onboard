@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - dev
+      - feature/login-module
+
+env:
+  DOCKER_IMAGE_TAG_NAME: spring-auth-core-app
+  AWS_REGION: ap-northeast-2
 
 jobs:
   deploy-server:
@@ -61,6 +66,6 @@ jobs:
               sudo docker rm $CONTAINER_ID
             fi
 
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_TAG_NAME }}:latest
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_TAG_NAME }}:latest
             sudo docker run -d -p 8080:8080 --env-file ./test.env \
             ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_TAG_NAME }}:latest
