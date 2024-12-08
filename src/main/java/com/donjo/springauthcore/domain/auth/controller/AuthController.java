@@ -16,12 +16,21 @@ import java.io.IOException;
 @AllArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
+
     private final AuthService authService;
+
+    // 메시지 상수화
+    private static final String REFRESH_SUCCESS_MESSAGE = "토큰이 새로 발급되었습니다.";
 
     @GetMapping("/refresh-token")
     public ResponseEntity<String> refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("refresh token request received");
-        authService.refreshToken(request, response);
-        return ResponseEntity.status(HttpStatus.OK).body("토큰이 새로 발급되었습니다.");
+        try {
+            log.info("refresh token request received");
+            authService.refreshToken(request, response);
+            return ResponseEntity.ok(REFRESH_SUCCESS_MESSAGE);
+        } catch (IOException e) {
+            log.error("Error refreshing token", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("토큰 갱신 중 문제가 발생했습니다.");
+        }
     }
 }
