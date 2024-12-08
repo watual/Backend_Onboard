@@ -39,7 +39,7 @@ public class AuthService {
         String newAccessToken = jwtUtil.createAccessToken(username);
         String newRefreshToken = jwtUtil.createRefreshToken(username);
 
-        users.setRefreshToken(newRefreshToken);
+        users.updateRefreshToken(newRefreshToken);
         response.setHeader("Authorization", newAccessToken);
         response.setHeader("RefreshToken", newRefreshToken);
 

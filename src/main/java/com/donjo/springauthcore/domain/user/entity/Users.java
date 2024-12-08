@@ -44,7 +44,7 @@ public class Users {
     /**
      * List of roles associated with the user.
      */
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Role> roleList = new ArrayList<>();
 
     /**
