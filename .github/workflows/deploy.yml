@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev
+      - feature/login-module
 
 env:
   DOCKER_IMAGE_TAG_NAME: spring-auth-core-app
