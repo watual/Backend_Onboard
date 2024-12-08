@@ -35,7 +35,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         String requestUrl = request.getRequestURL().toString();
         if (    requestUrl.contains("/auth") ||
                 requestUrl.contains("/users/login") ||
-                requestUrl.contains("/h2-console")
+                requestUrl.contains("/h2-console") ||
+                requestUrl.contains("/swagger") ||
+                requestUrl.contains("/v3/api-docs")
         ) {
             log.info("특정 경로 요청, 필터를 건너뜁니다: {}", requestUrl);
             filterChain.doFilter(request, response); // 필터 체인을 계속 진행
