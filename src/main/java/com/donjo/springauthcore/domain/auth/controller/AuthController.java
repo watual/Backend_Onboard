@@ -24,13 +24,8 @@ public class AuthController {
 
     @GetMapping("/refresh-token")
     public ResponseEntity<String> refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            log.info("refresh token request received");
-            authService.refreshToken(request, response);
-            return ResponseEntity.ok(REFRESH_SUCCESS_MESSAGE);
-        } catch (IOException e) {
-            log.error("Error refreshing token", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("토큰 갱신 중 문제가 발생했습니다.");
-        }
+        log.info("refresh token request received");
+        authService.refreshToken(request, response);
+        return ResponseEntity.ok(REFRESH_SUCCESS_MESSAGE);
     }
 }
