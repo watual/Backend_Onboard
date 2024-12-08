@@ -1,6 +1,9 @@
 # **Spring 기반 인증 및 보안 시스템 구현**
 
 ---
+![project_banner](https://github.com/user-attachments/assets/5c9f088f-79f1-4708-b4e6-cedf80e59c44)
+---
+
 
 # **Spring Security 기본 이해**
 
