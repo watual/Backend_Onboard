@@ -2,9 +2,11 @@ package com.donjo.springauthcore.domain.user.service;
 
 import com.donjo.springauthcore.domain.user.dto.UsersResponseDto;
 import com.donjo.springauthcore.domain.user.dto.UsersSignupRequestDto;
+import com.donjo.springauthcore.domain.user.entity.Role;
 import com.donjo.springauthcore.domain.user.entity.Users;
+import com.donjo.springauthcore.domain.user.repository.RoleRepository;
 import com.donjo.springauthcore.domain.user.repository.UsersRepository;
-import com.donjo.springauthcore.global.exception.DuplicateException;
+import com.donjo.springauthcore.global.exception.custom.DuplicateException;
 import com.donjo.springauthcore.global.exception.ExceptionCodeEnum;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,9 @@ class UsersServiceTest {
     private UsersRepository usersRepository;
 
     @Mock
+    private RoleRepository roleRepository;
+
+    @Mock
     private PasswordEncoder passwordEncoder;
 
     @InjectMocks
@@ -32,7 +37,7 @@ class UsersServiceTest {
 
     @Test
     @DisplayName("회원 가입 성공 테스트")
-    void testSignupSuccess() {
+    void signup_success_test() {
         // Given
         String user = "testUser";
         String password = "password123";
@@ -59,11 +64,12 @@ class UsersServiceTest {
         verify(usersRepository).existsByUsername(user);
         verify(passwordEncoder).encode(password);
         verify(usersRepository).save(any(Users.class));
+        verify(roleRepository, times(1)).save(any(Role.class)); // RoleRepository의 호출도 검증
     }
 
     @Test
     @DisplayName("회원 아이디 중복 테스트")
-    void testSignupDuplicateUser() {
+    void signup_duplicateError_test() {
         // Given
         String username = "testuser";
         String password = "password123";

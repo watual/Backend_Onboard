@@ -35,16 +35,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
 ////    JWT
-//    implementation("io.jsonwebtoken:jjwt:0.11.5")
-//    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
-//    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
 //    PasswordEncoder
-    implementation("org.springframework.security:spring-security-crypto")
+//    implementation("org.springframework.security:spring-security-crypto")
 //    Security
-//    implementation("org.springframework.boot:spring-boot-starter-security")
-//    implementation("org.springframework.boot:spring-boot-starter-web")
-//    testImplementation("org.springframework.security:spring-security-test")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("org.springframework.security:spring-security-test")
 
 //    Lombok
     compileOnly("org.projectlombok:lombok")

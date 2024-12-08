@@ -1,0 +1,33 @@
+### 테스트 데이터
+@id1 = testUser1
+@pw1 = password1
+@nick1 = user1
+@id2 = testUser2
+@pw2 = password2
+
+### 회원가입
+POST http://localhost:8080/users/signup
+Content-Type: application/json
+
+{
+  "username": "{{id1}}",
+  "password": "{{pw1}}",
+  "nickname": "{{nick1}}"
+}
+
+### 로그인
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+  "username": "{{id1}}",
+  "password": "{{pw1}}"
+}
+
+> {% client.global.set("ACCESS_TOKEN", response.headers.valueOf("Authorization"));
+    client.global.set("REFRESH_TOKEN", response.headers.valueOf("RefreshToken")); %}
+
+### 토큰 재발급
+
+GET http://localhost:8080/auth/refresh-token
+RefreshToken:{{REFRESH_TOKEN}}
