@@ -7,8 +7,8 @@ import com.donjo.springauthcore.domain.user.entity.UserRoleEnum;
 import com.donjo.springauthcore.domain.user.entity.Users;
 import com.donjo.springauthcore.domain.user.repository.RoleRepository;
 import com.donjo.springauthcore.domain.user.repository.UsersRepository;
-import com.donjo.springauthcore.global.exception.custom.DuplicateException;
 import com.donjo.springauthcore.global.exception.ExceptionCodeEnum;
+import com.donjo.springauthcore.global.exception.custom.DuplicateException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +26,18 @@ public class UsersService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Registers a new user.
+     *
+     * @param requestDto the signup request details
+     * @return a DTO containing user details
+     * @throws DuplicateException if the username or nickname already exists
+     */
     @Transactional
     public UsersResponseDto signup(UsersSignupRequestDto requestDto) {
+        log.info("Signup request received for username: {}", requestDto.getUsername());
         // 사용자 중복 확인
-        if(usersRepository.existsByUsername(requestDto.getUsername())) {
+        if (usersRepository.existsByUsername(requestDto.getUsername())) {
             throw new DuplicateException(ExceptionCodeEnum.DUPLICATE_USERNAME);
         } else if (usersRepository.existsByNickname(requestDto.getNickname())) {
             throw new DuplicateException(ExceptionCodeEnum.DUPLICATE_NICKNAME);
@@ -61,15 +69,24 @@ public class UsersService {
                 .toList();
 
 
+        log.info("Signup successful for username: {}", requestDto.getUsername());
         // 응답 반환
         return UsersResponseDto.from(users, roleList);
     }
 
+    /**
+     * Logs out a user by clearing their refresh token.
+     *
+     * @param users the user to log out
+     * @throws DuplicateException if the user is already logged out
+     */
     @Transactional
     public void logout(Users users) {
-        if(users.getRefreshToken().isBlank()) {
+        log.info("Logout request received for username: {}", users.getUsername());
+        if (users.getRefreshToken().isBlank()) {
             throw new DuplicateException(ExceptionCodeEnum.ALREADY_LOGGED_OUT);
         }
-        users.setRefreshToken(null);
+        users.updateRefreshToken(null);
+        log.info("Logout successful for username: {}", users.getUsername());
     }
 }

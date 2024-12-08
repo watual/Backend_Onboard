@@ -17,26 +17,38 @@ public class UsersResponseDto {
     private String nickname;
     private List<AuthorityDto> authorities;
 
+    /**
+     * Create a UsersResponseDto from a Users entity and a list of roles.
+     *
+     * @param users    Users entity
+     * @param roleList List of user roles
+     * @return UsersResponseDto
+     */
     public static UsersResponseDto from(Users users, List<UserRoleEnum> roleList) {
         return UsersResponseDto.builder()
                 .username(users.getUsername())
                 .nickname(users.getNickname())
-                .authorities(
-                        roleList.stream()
-                                .map(role -> new AuthorityDto(role.name()))
-                                .collect(Collectors.toList())
-                )
+                .authorities(mapToAuthorityDto(roleList))
                 .build();
     }
+
+    /**
+     * Create a UsersResponseDto from a Users entity.
+     *
+     * @param users Users entity
+     * @return UsersResponseDto
+     */
     public static UsersResponseDto from(Users users) {
         return UsersResponseDto.builder()
                 .username(users.getUsername())
                 .nickname(users.getNickname())
-                .authorities(
-                        users.getRoleList().stream()
-                                .map(role -> new AuthorityDto(role.getUserRole().name()))
-                                .collect(Collectors.toList())
-                )
+                .authorities(mapToAuthorityDto(users.getRoleList()))
                 .build();
+    }
+
+    private static List<AuthorityDto> mapToAuthorityDto(List<?> roles) {
+        return roles.stream()
+                .map(role -> new AuthorityDto(role.toString()))
+                .collect(Collectors.toList());
     }
 }

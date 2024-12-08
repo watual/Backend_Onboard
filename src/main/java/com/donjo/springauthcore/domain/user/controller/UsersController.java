@@ -26,7 +26,9 @@ public class UsersController {
      * */
     @PostMapping("/signup")
     public ResponseEntity<DataResponseDto<UsersResponseDto>> signup(@Valid @RequestBody UsersSignupRequestDto requestDto) {
+        log.info("Signup request received for username: {}", requestDto.getUsername());
         UsersResponseDto userResponseDto = usersService.signup(requestDto);
+        log.info("Signup successful for username: {}", requestDto.getUsername());
         return ResponseUtils.success(userResponseDto);
     }
 
@@ -35,7 +37,10 @@ public class UsersController {
      * */
     @GetMapping("/myProfile")
     public ResponseEntity<DataResponseDto<UsersResponseDto>> myProfile(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return ResponseUtils.success(UsersResponseDto.from(userDetails.getUser()));
+        log.info("Profile request received for username: {}", userDetails.getUsername());
+        UsersResponseDto responseDto = UsersResponseDto.from(userDetails.getUser());
+        log.info("Profile request successful for username: {}", userDetails.getUsername());
+        return ResponseUtils.success(responseDto);
     }
 
     /*
@@ -43,7 +48,9 @@ public class UsersController {
      * */
     @PostMapping("/logout")
     public ResponseEntity<MessageResponseDto> logout(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        log.info("Logout request received for username: {}", userDetails.getUsername());
         usersService.logout(userDetails.getUser());
+        log.info("Logout successful for username: {}", userDetails.getUsername());
         return ResponseUtils.success();
     }
 }
