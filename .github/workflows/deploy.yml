@@ -52,7 +52,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_TAG_NAME }}:latest
 
-      - name: Deploy to filmfly
+      - name: Deploy to SpringAuthCoreApplication
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -67,5 +67,5 @@ jobs:
             fi
 
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_TAG_NAME }}:latest
-            sudo docker run -d -p 8080:8080 --env-file ./test.env \
+            sudo docker run -d -p 8080:8080 \
             ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_TAG_NAME }}:latest
