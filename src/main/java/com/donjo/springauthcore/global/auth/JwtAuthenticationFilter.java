@@ -60,7 +60,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, accessToken);
         response.addHeader(JwtUtil.REFRESH_TOKEN_HEADER, refreshToken);
-        users.setRefreshToken(refreshToken);
+        users.updateRefreshToken(refreshToken);
         usersRepository.save(users);
 
         // 로그인 성공 메세지 반환
