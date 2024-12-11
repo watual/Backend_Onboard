@@ -100,8 +100,7 @@ public class WebSecurityConfig {
                 "http://localhost:63342",
                 "https://localhost:8080",
                 "https://localhost:63342",
-                "https://www.filmfly.life",
-                "https://api.filmfly.life"
+                "http://play.watual.store"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
