@@ -8,7 +8,6 @@ on:
 env:
   DOCKER_IMAGE_TAG_NAME: spring-auth-core-app
   AWS_REGION: ap-northeast-2
-  BUCKET: play.watual.store
 
 jobs:
   deploy-server:
@@ -73,7 +72,7 @@ jobs:
   deploy-front:
     runs-on: ubuntu-latest
     env:
-      BUCKET: spring-auth-core-app
+      BUCKET: play.watual.store
 
     steps:
       - name: Checkout
