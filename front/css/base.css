@@ -1,0 +1,167 @@
+/* base.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #3a1c71, #d76d77, #ffaf7b);
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+a {
+    margin-top: 5px; /* 입력창과 가까운 위치에 배치 */
+    display: inline-block; /* 링크 간격 조정 */
+    font-size: 14px;
+    text-decoration: none;
+    color: #ffaf7b;
+    transition: color 0.5s ease; /* 부드러운 색상 전환 */
+}
+
+a:hover {
+    color: #d76d77; /* 호버 시 색상 변경 */
+    text-decoration: underline;
+}
+
+.content-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    opacity: 0; /* 초기 상태: 투명 */
+    transform: scale(0.8); /* 초기 상태: 축소 */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* 애니메이션 효과 */
+}
+
+.content-box.show {
+    opacity: 1; /* 점점 나타남 */
+    transform: scale(1); /* 점점 커짐 */
+}
+
+.content-box.fade-out {
+    opacity: 0; /* 페이드 아웃 */
+    transform: scale(0.8); /* 작아지며 사라짐 */
+}
+
+input {
+    width: 100%; /* 부모 컨테이너의 크기에 맞춤 */
+    padding: 10px; /* 여백 설정 */
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 16px;
+
+    /* padding과 border를 포함한 크기 계산 */
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #ffaf7b;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #d76d77;
+}
+
+/* 알림창 스타일 */
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #ffb688, #ffa1a1);
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: popIn 0.5s ease-out; /* 등장 애니메이션 */
+    font-family: 'Poppins', sans-serif; /* 부드러운 폰트 */
+    color: #4a4a4a; /* 부드러운 텍스트 색상 */
+}
+
+/* 숨겨진 알림창 */
+.custom-alert.hidden {
+    display: none;
+}
+
+/* 알림창 메시지 */
+.custom-alert p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #5a5a5a;
+    line-height: 1.5;
+}
+
+/* 알림창 버튼 */
+.custom-alert button {
+    padding: 10px 25px;
+    background-color: #ffb3b3; /* 파스텔 핑크 버튼 */
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* 버튼 호버 효과 */
+.custom-alert button:hover {
+    background-color: #ff8585; /* 조금 더 진한 핑크 */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+    .custom-alert {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .custom-alert p {
+        font-size: 16px;
+    }
+
+    .custom-alert button {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+}
+
+/* 등장 애니메이션 */
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}

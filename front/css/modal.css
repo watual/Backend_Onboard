@@ -1,0 +1,58 @@
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: linear-gradient(145deg, #ffafbd, #ffc3a0);
+    color: #444;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: top 0.3s ease, left 0.3s ease;
+    width: 300px;
+    max-width: 60%;
+    font-family: 'Arial', sans-serif;
+    animation: gradientShift 3s infinite; /* 애니메이션 추가 */
+}
+
+@keyframes gradientShift {
+    0% {
+        background: linear-gradient(145deg, #ffafbd, #ffc3a0);
+    }
+    50% {
+        background: linear-gradient(145deg, #ffc3a0, #ffafbd);
+    }
+    100% {
+        background: linear-gradient(145deg, #ffafbd, #ffc3a0);
+    }
+}
+
+.modal p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.5;
+}
+
+.modal button {
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: linear-gradient(145deg, #f76d6d, #f7a6a6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal button:hover {
+    background: linear-gradient(145deg, #ff7e7e, #ffbcbc);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

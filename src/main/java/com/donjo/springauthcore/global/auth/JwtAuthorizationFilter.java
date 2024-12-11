@@ -32,13 +32,14 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        log.info("JwtAuthorizationFilter");
+
         String requestUrl = request.getRequestURL().toString();
         if (    requestUrl.contains("/auth") ||
-                requestUrl.contains("/users/login") ||
+                requestUrl.contains("/login") ||
                 requestUrl.contains("/h2-console") ||
                 requestUrl.contains("/swagger") ||
-                requestUrl.contains("/v3/api-docs") ||
-                requestUrl.contains("/login")
+                requestUrl.contains("/v3/api-docs")
         ) {
             log.info("특정 경로 요청, 필터를 건너뜁니다: {}", requestUrl);
             filterChain.doFilter(request, response); // 필터 체인을 계속 진행
@@ -83,6 +84,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         }
         log.info("AuthorizationFilter");
         filterChain.doFilter(request, response);
+
     }
 
     // authenticate

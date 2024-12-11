@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+<div id="customAlert" class="custom-alert hidden">
+    <p id="alertMessage">이곳에 메시지가 들어갑니다!</p>
+    <button id="alertClose">확인</button>
+</div>
+
+<div class="container">
+    <div class="content-box" id="contentBox">
+        <h2>Signup</h2>
+        <form id="signupForm">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username">
+                <span class="icon">👤</span>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password">
+                <span class="icon">🔒</span>
+            </div>
+            <div class="input-group">
+                <input type="text" id="nickname" placeholder="Nickname">
+                <span class="icon">🎭</span>
+            </div>
+            <div class="input-group">
+                <input type="text" id="firstname" placeholder="First Name">
+                <span class="icon">🧑‍💼</span>
+            </div>
+            <div class="input-group">
+                <input type="text" id="lastname" placeholder="Last Name">
+                <span class="icon">🧑‍💼</span>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email">
+                <span class="icon">📧</span>
+            </div>
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="./login.html" class="transition-link">Login</a></p>
+        </form>
+    </div>
+</div>
+<script src="js/base.js"></script>
+<script src="js/signup.js"></script>
+</body>
+</html>

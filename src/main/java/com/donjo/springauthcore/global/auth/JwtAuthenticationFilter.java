@@ -23,17 +23,27 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private final JwtUtil jwtUtil;
     private final UsersRepository usersRepository;
+    private final ObjectMapper objectMapper;
 
-    public JwtAuthenticationFilter(JwtUtil jwtUtil, UsersRepository usersRepository) {
+    public JwtAuthenticationFilter(JwtUtil jwtUtil, UsersRepository usersRepository, ObjectMapper objectMapper) {
         this.jwtUtil = jwtUtil;
         this.usersRepository = usersRepository;
-        setFilterProcessesUrl("/users/login");
+        this.objectMapper = objectMapper;
+        setFilterProcessesUrl("/api/login");
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try{
-            LoginRequestDto requestDto = new ObjectMapper().readValue(request.getInputStream(), LoginRequestDto.class);
+
+            log.info("들어는 왔다");
+
+            int contentLength = request.getContentLength();
+
+            log.info("길이: "+contentLength);
+
+
+            LoginRequestDto requestDto = objectMapper.readValue(request.getInputStream(), LoginRequestDto.class);
 
             log.info(requestDto.getUsername() + " : " + requestDto.getPassword());
 
