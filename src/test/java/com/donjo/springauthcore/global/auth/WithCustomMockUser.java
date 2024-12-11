@@ -11,5 +11,8 @@ public @interface WithCustomMockUser {
     String username() default "testUser";
     String password() default "testPassword";
     String nickname() default "testNickname";
+    String firstName() default "testFirstName";
+    String lastName() default "testLastName";
+    String email() default "testEmail";
     String[] roles() default {"ROLE_USER"};
 }
