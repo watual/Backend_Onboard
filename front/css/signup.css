@@ -1,0 +1,35 @@
+/* signup.css */
+.login-box h2 {
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+button {
+    margin-top: 20px;
+}
+
+p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+p a {
+    color: #ffaf7b;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}

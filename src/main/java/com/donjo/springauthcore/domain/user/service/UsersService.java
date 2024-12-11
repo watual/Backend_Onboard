@@ -41,6 +41,8 @@ public class UsersService {
             throw new DuplicateException(ExceptionCodeEnum.DUPLICATE_USERNAME);
         } else if (usersRepository.existsByNickname(requestDto.getNickname())) {
             throw new DuplicateException(ExceptionCodeEnum.DUPLICATE_NICKNAME);
+        } else if (usersRepository.existsByEmail(requestDto.getEmail())) { // 이메일 중복 확인 추가
+            throw new DuplicateException(ExceptionCodeEnum.DUPLICATE_EMAIL);
         }
 
         // 비밀번호 인코딩
@@ -51,6 +53,9 @@ public class UsersService {
                 .username(requestDto.getUsername())
                 .password(encodedPassword)
                 .nickname(requestDto.getNickname())
+                .firstName(requestDto.getFirstname())
+                .lastName(requestDto.getLastname())
+                .email(requestDto.getEmail())
                 .build();
 
         // DB 저장

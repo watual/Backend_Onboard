@@ -24,8 +24,6 @@ repositories {
 }
 
 dependencies {
-//    Thymeleaf
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
 //Swagger
     implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")

@@ -1,0 +1,25 @@
+/* login.css */
+.login-box h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-top: 10px; /* 이전 margin-bottom을 margin-top으로 변경 */
+    position: relative;
+}
+
+.input-group .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}

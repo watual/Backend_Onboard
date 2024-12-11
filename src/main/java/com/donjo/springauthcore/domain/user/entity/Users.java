@@ -42,6 +42,24 @@ public class Users {
     private String nickname;
 
     /**
+     * User's first name.
+     */
+    @Column(nullable = false)
+    private String firstName;
+
+    /**
+     * User's last name.
+     */
+    @Column(nullable = false)
+    private String lastName;
+
+    /**
+     * User's email
+     */
+    @Column(nullable = false)
+    private String email;
+
+    /**
      * List of roles associated with the user.
      */
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -54,10 +72,13 @@ public class Users {
     private String refreshToken;
 
     @Builder
-    public Users(String username, String password, String nickname) {
+    public Users(String username, String password, String nickname, String firstName, String lastName, String email) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     /**
