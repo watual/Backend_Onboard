@@ -49,9 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // api 요청 자동화
 
 // 테스트와 배포 환경에 따라 API 주소를 설정
-const apiBaseUrl = window.location.hostname === 'localhost'
-    ? 'https://api.watual.store/:8080' // 테스트 환경
-    : ''; // 배포 환경(상대 경로)
+const apiBaseUrl = 'http://api.watual.store:8080';
 
 // const imageUrl = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2';
 // const imageUrl = 'https://image.tmdb.org/t/p/w220_and_h330_face';
