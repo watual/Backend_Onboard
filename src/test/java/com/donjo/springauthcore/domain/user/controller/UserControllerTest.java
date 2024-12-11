@@ -29,7 +29,7 @@ public class UserControllerTest {
     @WithCustomMockUser
     public void api_myProfile_test() throws Exception {
         //조회 테스트
-        mockMvc.perform(get("/users/myProfile"))
+        mockMvc.perform(get("/api/myProfile"))
                 .andExpect(MockMvcResultMatchers.status().isOk()) // 상태 코드 200 확인
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data.username").value("testUser")) // JSON 응답에서 username 확인
                 .andExpect(MockMvcResultMatchers.jsonPath("$.data.nickname").value("testNickname")); // JSON 응답에서 nickname 확인

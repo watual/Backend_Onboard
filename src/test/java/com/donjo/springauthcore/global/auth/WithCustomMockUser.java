@@ -13,6 +13,6 @@ public @interface WithCustomMockUser {
     String nickname() default "testNickname";
     String firstName() default "testFirstName";
     String lastName() default "testLastName";
-    String email() default "testEmail";
+    String email() default "testEmail@gmail.com";
     String[] roles() default {"ROLE_USER"};
 }
